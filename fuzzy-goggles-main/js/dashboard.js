@@ -75,8 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const createParticipantCard = (p) => {
-        const imgHtml = p.image
-            ? `<img src="${p.image}" class="participant-img clickable-image" alt="${escapeHtml(p.name)}" data-fullsrc="${p.image}">`
+        // Handle images: either from local old_data.json OR from the new optimized API
+        const imageUrl = p.image || ''; 
+        
+        const imgHtml = imageUrl
+            ? `<img src="${imageUrl}" class="participant-img clickable-image" alt="${escapeHtml(p.name)}" data-fullsrc="${imageUrl}">`
             : `<div class="participant-img-placeholder">👤</div>`;
 
         return `
