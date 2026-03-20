@@ -26,19 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn('Local data error:', e);
             }
 
-            // 2. Refresh with API Data
+            // 2. Refresh with API Data (Merged with Local)
             const response = await fetch(`${API_URL}/api/participants`);
             if (response.ok) {
                 const serverData = await response.json();
                 const merged = [...(serverData.participants || []), ...rawData];
                 
-                const seen = new Set();
+                // --- ULTRA CLEAN DUPLICATE FILTERING ---
+                const seenPairs = new Set();
+                const seenContacts = new Set();
+                
                 allParticipants = merged.filter(p => {
-                    const key = `${(p.name || '').trim().toLowerCase()}-${(p.contact || '').trim().toLowerCase()}`;
-                    if (seen.has(key)) return false;
-                    seen.add(key);
+                    const normName = (p.name || '').trim().toLowerCase();
+                    const normContact = (p.contact || '').trim().replace(/\s/g, ''); // phone without spaces
+                    
+                    // If either contact or name+contact pair is seen, skip it
+                    const uniqueKey = `${normName}-${normContact}`;
+                    
+                    if (!normContact || seenContacts.has(normContact) || seenPairs.has(uniqueKey)) {
+                        return false; 
+                    }
+                    
+                    seenContacts.add(normContact);
+                    seenPairs.add(uniqueKey);
                     return true;
                 });
+                // --- END FILTERING ---
+
                 renderParticipants();
             }
         } catch (error) {
