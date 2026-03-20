@@ -75,12 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const createParticipantCard = (p) => {
-        // Handle images: either from local old_data.json OR from the new optimized API
+        // Find the valid image: prioritize p.image because we're returning it from API now
         const imageUrl = p.image || ''; 
         
-        const imgHtml = imageUrl
-            ? `<img src="${imageUrl}" class="participant-img clickable-image" alt="${escapeHtml(p.name)}" data-fullsrc="${imageUrl}">`
-            : `<div class="participant-img-placeholder">👤</div>`;
+        let imgHtml = '';
+        if (imageUrl && imageUrl.trim().length > 10) { // Check if it's a real data URI or URL
+             imgHtml = `<img src="${imageUrl}" class="participant-img clickable-image" alt="${escapeHtml(p.name)}" data-fullsrc="${imageUrl}">`;
+        } else {
+             imgHtml = `<div class="participant-img-placeholder">👤</div>`;
+        }
 
         return `
             <div class="participant-card">
