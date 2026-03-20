@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهرم ستور - التسجيل في المسابقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="landing-container" id="landingSection">
+        <div class="glass-box text-center main-content">
+            <h1 class="title-gradient">مسابقة الهرم ستور</h1>
+            <p class="subtitle">شارك الآن وكن أحد الفائزين المحظوظين معنا!</p>
+            <button class="primary-btn pulse-anim" id="startBtn">التسجيل في المسابقة</button>
+        </div>
+    </div>
+
+    <div class="form-container hidden" id="formSection">
+        <div class="glass-box form-box">
+            <h2 class="title-gradient text-center">بيانات الاشتراك</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="name">الاسم بالكامل</label>
+                    <input type="text" id="name" name="name" required placeholder="أدخل اسمك هنا">
+                </div>
+
+                <div class="input-group">
+                    <label for="contact">رقم الموبايل أو الإيميل</label>
+                    <input type="text" id="contact" name="contact" required
+                        placeholder="01xxxxxxxxx أو email@example.com">
+                </div>
+
+                <div class="input-group">
+                    <label class="file-label">أرفق لنا دليل تطبيق كل الشروط</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="image" name="image" accept="image/*" class="file-input" required>
+                        <div class="file-upload-design">
+                            <span class="upload-icon">📷</span>
+                            <span id="fileName">اختر صورة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-btn w-100" id="submitBtn">إرسال البيانات</button>
+                <div id="formMsg" class="form-msg"></div>
+            </form>
+
+            <button class="link-btn text-center w-100 mt-1" id="backToHomeBtn" type="button"
+                style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; margin-top:20px; text-decoration:underline;">العودة
+                للصفحة الرئيسية</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

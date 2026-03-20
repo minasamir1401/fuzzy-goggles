@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم - الهرم استور</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body class="dashboard-body">
+    <nav class="glass-nav">
+        <h2 class="title-gradient m-0">لوحة تحكم الهرم استور</h2>
+        <div class="controls">
+            <input type="number" id="winnerCount" min="1" value="1" class="number-input" placeholder="عدد الفائزين">
+            <button id="pickWinnersBtn" class="primary-btn random-btn">اختيار الفائزين 🎲</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal hidden">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="fullImage">
+        </div>
+
+        <!-- Winners Section -->
+        <div id="winnersSection" class="winners-section hidden glass-box">
+            <h2 class="text-center highlight-title">🎉 الفائزون 🎉</h2>
+            <div id="winnersList" class="winners-grid"></div>
+        </div>
+
+        <h3 class="section-title">كل المشتركين (<span id="totalCount">0</span>)</h3>
+        <div id="participantsList" class="participants-grid">
+            <!-- Loading indicator -->
+            <div class="loading text-center w-100 mt-1" style="grid-column: 1/-1;">جاري التحميل...</div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
